@@ -50,7 +50,7 @@ app.post('/login', function(req, res) {
     if (req.body.username == process.env.SMTP_USER
         || req.body.username == process.env.TO_EMAIL) {
 
-      AV.User.logIn(req.body.username, req.body.password).then(function(user) {
+      AV.User.loginWithEmail(req.body.username, req.body.password).then(function(user) {
         res.saveCurrentUser(user); // 保存当前用户到 Cookie
         res.redirect('/comments'); // 跳转到个人资料页面
       }, function(error) {
